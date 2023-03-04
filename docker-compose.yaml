@@ -1,0 +1,97 @@
+version: '3.7'
+
+services:
+  mqtt:
+    build: ./backend/broker
+    container_name: sensor_broker
+    restart: always
+    volumes:
+      - mosquitto_data:/mosquitto
+    networks:
+      - backend
+    ports:
+      - 1883:1883
+      
+  mariadb:
+    container_name: sensor_db
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 15031989
+      MYSQL_DATABASE: sensor4.0
+      MYSQL_USER: foxconn
+      MYSQL_PASSWORD: foxconn
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+    restart: always
+    volumes:
+     - mariadb_data:/var/lib/mysql
+
+  myadmin:
+    container_name: sensor_myadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 81:80
+    depends_on:
+            - mariadb
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - backend
+  
+  flask_api:
+    build: ./backend/flask_api
+    container_name: sensor_api
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+            - mariadb
+    command: python main.py
+    volumes:
+      - ./backend/flask_api:/flask_api
+    networks:
+      - backend
+
+  interface:
+    build: ./backend/interface
+    container_name: sensor_interface
+    command: python main.py
+    restart: always
+    depends_on:
+      - mqtt
+      - mariadb
+      - flask_api
+    volumes:
+      - ./backend/interface:/interface
+    networks:
+      - backend
+
+  frontend:
+    build: ./frontend
+    command: npm start
+    container_name: sensor_frontend
+    restart: always
+    environment:
+      - PORT=8000
+    ports:
+      - 80:8000
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+    networks:
+      - backend
+      
+
+
+volumes:
+  mariadb_data:
+    driver: local
+  mosquitto_data:
+    driver: local
+
+networks:
+  backend:
+    driver: bridge

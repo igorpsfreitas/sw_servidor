@@ -1,0 +1,11 @@
+flask
+flask_sqlalchemy
+mysql-connector-python
+mysqlclient
+PyMySQL
+greenlet==2.0.1
+mariadb==1.0.11
+packaging==21.3
+paho-mqtt==1.6.1
+pyparsing==3.0.9
+SQLAlchemy==1.4.44
