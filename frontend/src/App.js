@@ -2,9 +2,10 @@ import './App.css';
 import Header from './components/Header';
 import { ChakraProvider, Box, Wrap, WrapItem, Flex } from '@chakra-ui/react'
 import T001 from './components/T001'
-import T002 from './components/T002';
+import SLD_01 from './components/SLD_01';
+import SLD_02 from './components/SLD_02';
+import MPO_01 from './components/MPO_01';
 import T003 from './components/T003'
-import T004 from './components/T004'
 
 
 
@@ -19,22 +20,13 @@ function App() {
       
        <Wrap justify='center' spacing='1em' padding={['3em', '1em', '1em', '1em']}>
         <WrapItem>
-          
-
-            <T002/>
-          
-         
+          <SLD_01/>
         </WrapItem>
         <WrapItem>
-          
-
-            <T003/>
-          
-         
+          <SLD_02/>
         </WrapItem>
         <WrapItem>
-
-            <T003/>
+          <MPO_01/>
          
         </WrapItem>
         <WrapItem>

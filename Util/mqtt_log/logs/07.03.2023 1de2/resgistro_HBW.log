@@ -1,0 +1,20 @@
+
+/nfc/HBW:
+2023-03-07 13:10:59
+{"Status": "OUT", "UID": [4, 30, 168, 66, 239, 108, 129], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "15:19:37"}
+
+/nfc/HBW:
+2023-03-07 13:12:14
+{"Status": "IN", "UID": [4, 201, 220, 42, 45, 16, 144], "Local": "Debug_ICT", "Baia": 0, "Time_stamp": "13:12:14"}
+
+/nfc/HBW:
+2023-03-07 13:13:07
+{"Status": "IN", "UID": [4, 31, 168, 66, 239, 108, 129], "Local": "Debug_ICT", "Baia": 1, "Time_stamp": "13:13:07"}
+
+/nfc/HBW:
+2023-03-07 13:14:00
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 129], "Local": "Debug_ICT", "Baia": 2, "Time_stamp": "13:14:00"}
+
+/nfc/HBW:
+2023-03-07 13:16:00
+{"Status": "OUT", "UID": [4, 201, 220, 42, 45, 16, 144], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "13:16:00"}

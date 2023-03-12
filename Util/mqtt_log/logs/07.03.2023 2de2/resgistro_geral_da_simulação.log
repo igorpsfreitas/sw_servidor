@@ -1,0 +1,192 @@
+
+/nfc/MPO:
+2023-03-07 13:20:44
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Time_stamp": "13:20:45"}
+
+/nfc/MPO:
+2023-03-07 13:20:57
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "RESULT": "NOK", "Time_stamp": "13:20:58"}
+
+/nfc/HBW:
+2023-03-07 13:21:26
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 0, "Time_stamp": "13:21:26"}
+
+/nfc/MPO:
+2023-03-07 13:21:42
+{"Status": "IN", "UID": [4, 192, 168, 66, 239, 108, 128], "Time_stamp": "13:21:43"}
+
+/nfc/MPO:
+2023-03-07 13:21:55
+{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "RESULT": "NOK", "Time_stamp": "13:21:56"}
+
+/nfc/SLD:
+2023-03-07 13:22:03
+{"Status": "IN", "UID": [4, 30, 168, 66, 239, 108, 129], "baia": 0, "Time_stamp": "13:22:03"}
+
+/nfc/HBW:
+2023-03-07 13:22:16
+{"Status": "IN", "UID": [4, 192, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 1, "Time_stamp": "13:22:17"}
+
+/nfc/SLD:
+2023-03-07 13:22:35
+{"Status": "IN", "UID": [4, 37, 166, 66, 239, 108, 128], "baia": 3, "Time_stamp": "13:22:36"}
+
+/nfc/SLD:
+2023-03-07 13:22:44
+{"Status": "IN", "UID": [4, 120, 167, 66, 239, 108, 128], "baia": 6, "Time_stamp": "13:22:45"}
+
+/nfc/HBW:
+2023-03-07 13:22:59
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "13:22:59"}
+
+/nfc/MPO:
+2023-03-07 13:23:10
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Time_stamp": "13:23:10"}
+
+/nfc/MPO:
+2023-03-07 13:23:23
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "RESULT": "NOK", "Time_stamp": "13:23:23"}
+
+/nfc/HBW:
+2023-03-07 13:23:47
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 0, "Time_stamp": "13:23:48"}
+
+/nfc/SLD:
+2023-03-07 13:24:10
+{"Status": "OUT", "UID": [4, 30, 168, 66, 239, 108, 129], "Time_stamp": "13:24:10", "RESULT": "NOK"}
+
+/nfc/HBW:
+2023-03-07 13:24:36
+{"Status": "IN", "UID": [4, 30, 168, 66, 239, 108, 129], "Local": "Debug_FT", "Baia": 0, "Time_stamp": "13:24:36"}
+
+/nfc/SLD:
+2023-03-07 13:24:38
+{"Status": "OUT", "UID": [4, 37, 166, 66, 239, 108, 128], "Time_stamp": "13:24:38", "RESULT": "OK"}
+
+/nfc/SLD:
+2023-03-07 13:25:01
+{"Status": "OUT", "UID": [4, 120, 167, 66, 239, 108, 128], "Time_stamp": "13:25:01", "RESULT": "NOK"}
+
+/nfc/HBW:
+2023-03-07 13:25:24
+{"Status": "IN", "UID": [4, 120, 167, 66, 239, 108, 128], "Local": "Debug_FT", "Baia": 1, "Time_stamp": "13:25:25"}
+
+/nfc/HBW:
+2023-03-07 13:26:12
+{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 1, "Time_stamp": "13:26:13"}
+
+/nfc/MPO:
+2023-03-07 13:26:23
+{"Status": "IN", "UID": [4, 192, 168, 66, 239, 108, 128], "Time_stamp": "13:26:23"}
+
+/nfc/MPO:
+2023-03-07 13:26:36
+{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "RESULT": "OK", "Time_stamp": "13:26:37"}
+
+/nfc/SLD:
+2023-03-07 13:27:08
+{"Status": "IN", "UID": [4, 192, 168, 66, 239, 108, 128], "baia": 0, "Time_stamp": "13:27:09"}
+
+/nfc/MPO:
+2023-03-07 13:27:58
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 129], "Time_stamp": "13:27:58"}
+
+/nfc/MPO:
+2023-03-07 13:28:14
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 129], "RESULT": "OK", "Time_stamp": "13:28:14"}
+
+/nfc/SLD:
+2023-03-07 13:28:42
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 129], "baia": 3, "Time_stamp": "13:28:42"}
+
+/nfc/MPO:
+2023-03-07 13:28:46
+{"Status": "IN", "UID": [4, 31, 168, 66, 239, 108, 129], "Time_stamp": "13:28:46"}
+
+/nfc/MPO:
+2023-03-07 13:28:57
+{"Status": "OUT", "UID": [4, 31, 168, 66, 239, 108, 129], "RESULT": "OK", "Time_stamp": "13:28:58"}
+
+/nfc/SLD:
+2023-03-07 13:29:34
+{"Status": "IN", "UID": [4, 31, 168, 66, 239, 108, 129], "baia": 6, "Time_stamp": "13:29:34"}
+
+/nfc/HBW:
+2023-03-07 13:29:41
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "13:29:42"}
+
+/nfc/MPO:
+2023-03-07 13:29:52
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Time_stamp": "13:29:53"}
+
+/nfc/SLD:
+2023-03-07 13:30:00
+{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "Time_stamp": "13:30:01", "RESULT": "OK"}
+
+/nfc/MPO:
+2023-03-07 13:30:04
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "RESULT": "OK", "Time_stamp": "13:30:05"}
+
+/nfc/SLD:
+2023-03-07 13:30:34
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "baia": 0, "Time_stamp": "13:30:34"}
+
+/nfc/HBW:
+2023-03-07 13:30:45
+{"Status": "OUT", "UID": [4, 30, 168, 66, 239, 108, 129], "Local": "Debug_FT", "Result": "NOK", "Next": "Scrap", "Baia": 0, "Time_stamp": "13:30:46"}
+
+/nfc/MPO:
+2023-03-07 13:31:12
+{"Status": "IN", "UID": [4, 201, 220, 42, 45, 16, 144], "Time_stamp": "13:31:12"}
+
+/nfc/SLD:
+2023-03-07 13:31:19
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 129], "Time_stamp": "13:31:19", "RESULT": "OK"}
+
+/nfc/MPO:
+2023-03-07 13:31:24
+{"Status": "OUT", "UID": [4, 201, 220, 42, 45, 16, 144], "RESULT": "OK", "Time_stamp": "13:31:25"}
+
+/nfc/SLD:
+2023-03-07 13:31:38
+{"Status": "OUT", "UID": [4, 31, 168, 66, 239, 108, 129], "Time_stamp": "13:31:38", "RESULT": "OK"}
+
+/nfc/SLD:
+2023-03-07 13:31:50
+{"Status": "IN", "UID": [4, 201, 220, 42, 45, 16, 144], "baia": 3, "Time_stamp": "13:31:51"}
+
+/nfc/HBW:
+2023-03-07 13:32:19
+{"Status": "OUT", "UID": [4, 120, 167, 66, 239, 108, 128], "Local": "Debug_FT", "Result": "OK", "Next": "Final", "Baia": 1, "Time_stamp": "13:32:20"}
+
+/nfc/MPO:
+2023-03-07 13:32:30
+{"Status": "IN", "UID": [4, 120, 167, 66, 239, 108, 128], "Time_stamp": "13:32:31"}
+
+/nfc/MPO:
+2023-03-07 13:32:43
+{"Status": "OUT", "UID": [4, 120, 167, 66, 239, 108, 128], "RESULT": "OK", "Time_stamp": "13:32:43"}
+
+/nfc/SLD:
+2023-03-07 13:32:47
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Time_stamp": "13:32:48", "RESULT": "NOK"}
+
+/nfc/SLD:
+2023-03-07 13:33:16
+{"Status": "IN", "UID": [4, 120, 167, 66, 239, 108, 128], "baia": 0, "Time_stamp": "13:33:16"}
+
+/nfc/HBW:
+2023-03-07 13:33:21
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_FT", "Baia": 0, "Time_stamp": "13:33:22"}
+
+/nfc/SLD:
+2023-03-07 13:33:53
+{"Status": "OUT", "UID": [4, 201, 220, 42, 45, 16, 144], "Time_stamp": "13:33:53", "RESULT": "OK"}
+
+/nfc/HBW:
+2023-03-07 13:36:24
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_FT", "Result": "NOK", "Next": "Scrap", "Baia": 0, "Time_stamp": "13:36:23"}
+
+/nfc/SLD:
+2023-03-07 13:36:37
+{"Status": "OUT", "UID": 0, "Time_stamp": "13:36:37", "RESULT": "OK"}

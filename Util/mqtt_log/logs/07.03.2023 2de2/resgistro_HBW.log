@@ -1,0 +1,48 @@
+
+/nfc/HBW:
+2023-03-07 13:21:26
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 0, "Time_stamp": "13:21:26"}
+
+/nfc/HBW:
+2023-03-07 13:22:16
+{"Status": "IN", "UID": [4, 192, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 1, "Time_stamp": "13:22:17"}
+
+/nfc/HBW:
+2023-03-07 13:22:59
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "13:22:59"}
+
+/nfc/HBW:
+2023-03-07 13:23:47
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Baia": 0, "Time_stamp": "13:23:48"}
+
+/nfc/HBW:
+2023-03-07 13:24:36
+{"Status": "IN", "UID": [4, 30, 168, 66, 239, 108, 129], "Local": "Debug_FT", "Baia": 0, "Time_stamp": "13:24:36"}
+
+/nfc/HBW:
+2023-03-07 13:25:24
+{"Status": "IN", "UID": [4, 120, 167, 66, 239, 108, 128], "Local": "Debug_FT", "Baia": 1, "Time_stamp": "13:25:25"}
+
+/nfc/HBW:
+2023-03-07 13:26:12
+{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 1, "Time_stamp": "13:26:13"}
+
+/nfc/HBW:
+2023-03-07 13:29:41
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_ICT", "Result": "IDDLE", "Destino": "Saida", "Baia": 0, "Time_stamp": "13:29:42"}
+
+/nfc/HBW:
+2023-03-07 13:30:45
+{"Status": "OUT", "UID": [4, 30, 168, 66, 239, 108, 129], "Local": "Debug_FT", "Result": "NOK", "Next": "Scrap", "Baia": 0, "Time_stamp": "13:30:46"}
+
+/nfc/HBW:
+2023-03-07 13:32:19
+{"Status": "OUT", "UID": [4, 120, 167, 66, 239, 108, 128], "Local": "Debug_FT", "Result": "OK", "Next": "Final", "Baia": 1, "Time_stamp": "13:32:20"}
+
+/nfc/HBW:
+2023-03-07 13:33:21
+{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_FT", "Baia": 0, "Time_stamp": "13:33:22"}
+
+/nfc/HBW:
+2023-03-07 13:36:24
+{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Local": "Debug_FT", "Result": "NOK", "Next": "Scrap", "Baia": 0, "Time_stamp": "13:36:23"}
