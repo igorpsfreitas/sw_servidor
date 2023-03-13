@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import { ChakraProvider, Box, Wrap, WrapItem, Flex } from '@chakra-ui/react'
+import { ChakraProvider, Box, Wrap, WrapItem, SimpleGrid } from '@chakra-ui/react'
 import T001 from './components/T001'
 import SLD_01 from './components/SLD_01';
 import SLD_02 from './components/SLD_02';
@@ -24,13 +24,31 @@ function App() {
           <MPO_01/>
         </WrapItem>
         <WrapItem>
-          <MPO_01/>
+          <SLD_01/>
         </WrapItem>
         <WrapItem>
-          <MPO_01/>
+          <SLD_01/>
         </WrapItem>
         <WrapItem>
-          <MPO_01/>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
+        </WrapItem>
+        <WrapItem>
+          <SLD_01/>
         </WrapItem>
       </Wrap>
     </ChakraProvider> 

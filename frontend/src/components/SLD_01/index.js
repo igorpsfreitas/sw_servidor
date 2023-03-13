@@ -7,13 +7,13 @@ const state = {
           
   series: [{
     name: 'Baia 01',
-    data: [44, 55, 41]
+    data: [1, 1, 1]
   }, {
     name: 'Baia 02',
-    data: [13, 23, 20]
+    data: [1, 1, 1]
   }, {
     name: 'Baia 03',
-    data: [11, 17, 15]
+    data: [1, 1, 1]
   }],
   options: {
     chart: {
@@ -52,7 +52,7 @@ const state = {
       title: {
         text: 'Segundos',
         style: {
-          fontSize: '1em',
+          fontSize: '0.8em',
           fontWeight: 900
         }
       }
@@ -82,7 +82,8 @@ const state = {
     },
     fill: {
       opacity: 1
-    }
+    },
+    colors:['#583b7e', '#a3ab98', '#028f76']
   }
 }
 
@@ -112,9 +113,9 @@ function SLD_01(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
+        <Box border="1px" boxShadow='lg' borderRadius='lg' borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
-          <Text fontSize='1.5em' padding={'0.5em 0 0 0'}>SLD</Text>
+          <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>SLD</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Tempo médio de trabalho por posto</Text>

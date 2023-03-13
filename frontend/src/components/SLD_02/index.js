@@ -67,7 +67,7 @@ const state = {
         }
       }
     },
-    colors:['#2fd12a', '#d12a2a']
+    colors:['#028f76', '#d14334']
   },
 
 
@@ -100,9 +100,9 @@ function SLD_02(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
+        <Box border="1px" boxShadow='lg' borderRadius='lg' borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
-          <Text fontSize='1.5em' padding={'0.5em 0 0 0'}>SLD</Text>
+          <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>SLD</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Taxa de Aprovação e Reprovação</Text>

@@ -4,21 +4,23 @@ import Clock from "../Clock"
 
 function Header(){
     return (
-        <Grid templateColumns='repeat(5, 1fr)' >
-            <GridItem colSpan={4}>
-                <Text fontSize='1em' padding='0 0em' bg='#121d96' color='#FFFFFF' maxWidth='100%'>
-                    <Text as='b'fontSize='2em' padding='0 1em' bg='#121d96' color='#FFFFFF'maxWidth='100%'>
-                        DASHBOARD
+        <Box boxShadow='dark-lg'>
+            <Grid templateColumns='repeat(5, 1fr)' >
+                <GridItem colSpan={4}>
+                    <Text fontSize='1em' padding='0 0em' bg='#09456c' color='#FFFFFF' maxWidth='100%'>
+                        <Text textShadow='2px 2px #9b0800' as='b'fontSize='2em' padding='0 1em' bg='#09456c' color='#FFFFFF'maxWidth='100%'>
+                            DASHBOARD
+                        </Text>
                     </Text>
-                </Text>
-            </GridItem>
-            <GridItem colSpan={1}>
+                </GridItem>
+                <GridItem colSpan={1}>
 
-            <Box bg='#121d96' textAlign='right' padding='0 1em' maxWidth='100%'>
-                <Clock/>   
-            </Box>
-            </GridItem>
-        </Grid>
+                <Box textShadow='2px 2px #9b0800' bg='#09456c' textAlign='right' padding='0 1em' maxWidth='100%'>
+                    <Clock/>   
+                </Box>
+                </GridItem>
+            </Grid>
+        </Box>
     )
 
 }

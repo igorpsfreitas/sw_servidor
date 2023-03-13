@@ -91,14 +91,14 @@ function MPO_01(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
+        <Box border="1px" boxShadow='lg' borderRadius='lg' borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
-          <Text fontSize='1.5em' padding={'0.1em 0 0 0'}>MPO</Text>
+          <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>MPO</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Taxa de Aprovação e Reprovação</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="bar" height='78%' width='100%'/>
+      <Chart options={state.options} series={state.series} type="bar" height='75%' width='100%'/>
       </Box>
       </div>
       
