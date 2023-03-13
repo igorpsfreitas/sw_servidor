@@ -112,14 +112,14 @@ function SLD_01(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200">
+        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'}>SLD</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Tempo médio de trabalho por posto</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="bar" height={350} width={500}/>
+      <Chart options={state.options} series={state.series} type="bar" height='75%' width='100%'/>
       </Box>
       </div>
       

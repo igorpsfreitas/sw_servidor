@@ -12,7 +12,7 @@ function Clock(){
         clearInterval(timerId);
       };
     }, []);  return (
-      <Text bg='#121d96' fontSize='3vw' color='#ffffff' h='100%'>
+      <Text bg='#121d96' fontSize='2em' color='#ffffff' h='100%'>
         {date.toLocaleTimeString()}
       </Text>
       

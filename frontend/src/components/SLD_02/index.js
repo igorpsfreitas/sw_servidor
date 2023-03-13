@@ -18,8 +18,18 @@ const state = {
       height: 430,
       toolbar: {
         show: false
-      },
+      } 
     },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        legend: {
+          position: 'bottom',
+          offsetX: -10,
+          offsetY: 0
+        }
+      }
+    }],
     plotOptions: {
       bar: {
         horizontal: false,
@@ -47,6 +57,15 @@ const state = {
     },
     xaxis: {
       categories: ['10:00','10:30', '11:00', '11:30', '12:00'],
+    },
+    yaxis: {
+      title: {
+        text: 'Unidades',
+        style: {
+          fontSize: '1em',
+          fontWeight: 900
+        }
+      }
     },
     colors:['#2fd12a', '#d12a2a']
   },
@@ -81,14 +100,14 @@ function SLD_02(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200">
+        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'}>SLD</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Taxa de Aprovação e Reprovação</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="bar" height={350} width={500}/>
+      <Chart options={state.options} series={state.series} categories={['a', 'b']} type="bar" height='75%' width='100%'/>
       </Box>
       </div>
       

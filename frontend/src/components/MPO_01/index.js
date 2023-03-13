@@ -16,6 +16,9 @@ const state = {
     chart: {
       type: 'bar',
       height: 430,
+      toolbar: {
+        show: false
+      } 
       
     },
     plotOptions: {
@@ -45,6 +48,15 @@ const state = {
     },
     xaxis: {
       categories: ['10:00','10:30', '11:00', '11:30', '12:00'],
+    },
+    yaxis: {
+      title: {
+        text: 'Unidades',
+        style: {
+          fontSize: '1em',
+          fontWeight: 900
+        }
+      }
     },
     colors:['#2fd12a', '#d12a2a']
   },
@@ -79,14 +91,14 @@ function MPO_01(){
     */
     return(
       <div>
-        <Box border="1px" borderColor="gray.200">
+        <Box border="1px" borderColor="gray.200" padding={'0 1em 0 1em'} height={300} width={450}>
         <Center>
-          <Text fontSize='1.5em' padding={'0.5em 0 0 0'}>MPO</Text>
+          <Text fontSize='1.5em' padding={'0.1em 0 0 0'}>MPO</Text>
         </Center>
         <Center>
           <Text fontSize='1em' padding={'0'}>Taxa de Aprovação e Reprovação</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="bar" height={350} width={500}/>
+      <Chart options={state.options} series={state.series} type="bar" height='78%' width='100%'/>
       </Box>
       </div>
       
