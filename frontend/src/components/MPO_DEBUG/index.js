@@ -17,6 +17,13 @@ const state = {
     tooltip: {
       enabled: false,
     },
+    plotOptions:{
+      pie:{
+        donut:{
+          size: '55%'
+        }
+      }
+    },
     title: {
       text: 'Resultado Geral',
       align: 'left'

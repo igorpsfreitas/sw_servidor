@@ -16,7 +16,13 @@ const state = {
       },
       
     },
-    
+    plotOptions:{
+      pie:{
+        donut:{
+          size: '55%'
+        }
+      }
+    },
     tooltip: {
       enabled: false,
     },
