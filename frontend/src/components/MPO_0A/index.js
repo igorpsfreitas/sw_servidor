@@ -22,17 +22,6 @@ const state = {
       align: 'left'
     },
     labels: ['Aprovados', 'Reprovados'],
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
-        },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }],
     colors:['#028f76', '#d14334']
   },
 
