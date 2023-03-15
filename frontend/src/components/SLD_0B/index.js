@@ -30,12 +30,13 @@ const state = {
       toolbar: {
         show: false
       },
-      tooltip: {
-        show: false,
-        enabled: false
-      }
+      
 
     },
+    tooltip: {
+        show: false,
+        enabled: false
+      },
     responsive: [{
       breakpoint: 480,
       options: {
@@ -65,11 +66,12 @@ const state = {
       type: 'text',
       categories: ['Posto-01', 'Posto-02', 'Posto-03'],
     },
-    legend: {
-      position: 'right',
-      offsetY: 40
+    legend:{
+      position: 'bottom',
+          offsetX: -10,
+          offsetY: 0,
     },
-    fill: {
+          fill: {
       opacity: 1
     },
     title: {

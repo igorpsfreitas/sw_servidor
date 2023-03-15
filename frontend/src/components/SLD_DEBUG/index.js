@@ -7,13 +7,16 @@ const state = {
           
   series: [77, 33],
   options: {
+    
     labels: ['Reparados', 'Scrap'],
     chart: {
       type: 'donut',
       animations: {
         enabled: false,
-      }
+      },
+      
     },
+    
     tooltip: {
       enabled: false,
     },

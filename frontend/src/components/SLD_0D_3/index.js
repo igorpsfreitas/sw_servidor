@@ -36,7 +36,7 @@ const state = {
       curve: 'straight'
     },
     title: {
-      text: 'Posto 02: Ocupação e Espera',
+      text: 'Posto 03: Ocupação e Espera',
       align: 'left'
     },
     grid: {
