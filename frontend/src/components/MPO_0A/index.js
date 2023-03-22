@@ -5,7 +5,7 @@ import { Text, Center, Box, position } from '@chakra-ui/react'
 
 const state = {
           
-  series: [77, 33],
+  series: [77, 2],
   options: {
     tooltip: {
       enabled: false,
@@ -24,14 +24,10 @@ const state = {
     labels: ['Aprovados', 'Reprovados'],
     colors:['#028f76', '#d14334']
   },
-
-
 };
 
-
-
 function MPO_0A(){
-  /*
+  
     const [date, setDate] = useState(0);
     if (date == 0){
       refresh()
@@ -40,8 +36,8 @@ function MPO_0A(){
     
     function refresh(){
       api
-      .get("/teste")
-      .then((response) => setDate(response.data.teste))
+      .get("/MPO_0A")
+      .then((response) => setDate(response.data.MPO_0A))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
     })}
@@ -52,14 +48,15 @@ function MPO_0A(){
         clearInterval(timerId);
       };
     }, []); 
-    */
+    
     return(
       <div>
+        {console.log(date)}
         <Box border="2px" boxShadow='lg' borderRadius='lg' borderColor="#6F6" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>MPO</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="pie" height='75%' width='100%'/>
+      <Chart options={state.options} series={date} type="pie" height='75%' width='100%'/>
       </Box>
       </div>
       

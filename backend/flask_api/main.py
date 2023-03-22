@@ -5,7 +5,8 @@ import json
 import random
 
 # DataBase configs:
-db_adress = 'sensor_db'
+db_adress = '127.0.0.1'  # Desenvolvimento
+#db_adress = 'sensor_db' # Produção
 db_port = '3306'
 db_user = 'foxconn'
 db_passwd = 'foxconn'
@@ -18,98 +19,64 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{db_user}:{db_passwd}@
 db = SQLAlchemy(app)
 
 
-
 # Mapping das Tabelas:
-class SLD(db.Model):
-    __tablename__ = 'sld'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
-    uid = db.Column(db.BigInteger)
-    baia = db.Column(db.Integer)
-    time = db.Column(db.String(length=10))
-    result = db.Column(db.Boolean)
-    def to_json(self):
-        return {
-            "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "baia": self.baia,
-            "time": self.time,
-            "result": self.result
-            }
-
 class MPO(db.Model):
     __tablename__ = 'mpo'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
+    status = db.Column(db.String(length=10))
     uid = db.Column(db.BigInteger)
+    result = db.Column(db.String(length=5))
     time = db.Column(db.String(length=10))
-    result = db.Column(db.Boolean, default=True)
     def to_json(self):
         return {
             "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "time": self.time,
-            "result": self.result
+            "Status": self.status,
+            "UID": self.uid,
+            "RESULT": self.result,
+            "Time_stamp": self.time
             }
-
-
-class VGR(db.Model):
-    __tablename__ = 'vgr'
+    
+class SLD(db.Model):
+    __tablename__ = 'sld'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
+    status = db.Column(db.String(length=10))
     uid = db.Column(db.BigInteger)
+    baia = db.Column(db.Integer)
     time = db.Column(db.String(length=10))
+    result = db.Column(db.String(length=5))
     def to_json(self):
         return {
             "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "time": self.time
+            "Status": self.status,
+            "UID": self.uid,
+            "baia": self.baia,
+            "Time_stamp": self.time,
+            "RESULT": self.result
             }
 
 class HBW(db.Model):
     __tablename__ = 'hbw'
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.Boolean, default=True)
+    status = db.Column(db.String(length=10))
     uid = db.Column(db.BigInteger)
-    baia = db.Column(db.Integer)
     local = db.Column(db.String(length=20))
+    baia = db.Column(db.Integer)
     destino = db.Column(db.String(length=20))
+    result = db.Column(db.String(length=5))
     time = db.Column(db.String(length=10))
-    result = db.Column(db.String(length=20))
     def to_json(self):
         return {
             "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "baia": self.baia,
-            "time": self.time,
-            "local": self.local,
-            "destino": self.destino,
-            "result": self.result
+            "Status": self.status,
+            "UID": self.uid,
+            "Local": self.local,
+            "Baia": self.baia,
+            "RESULT": self.result,
+            "Destino": self.destino,
+            "Time_stamp": self.time
             }
 # ----------------------------------------------------------------------------------------------------------------------------------------- #
-
-
-# Criar as tabelas no banco de dados
-@app.route("/", methods=["GET"])
-def cria_tabelas():
-    with app.app_context():
-        db.create_all()
-    return '<h1>Tabelas criadas com sucesso!!! </h1>'
-
-# Selecionar Tudo
-@app.route("/sld", methods=["GET"])
-def seleciona_sld():
-
-    sld_objetos = SLD.query.all()
-    sld_json = [sld.to_json() for sld in sld_objetos]
-
-    return gera_response(200, "sld", sld_json)
-    
-
+# Gera estrutura de envio das querys
 def gera_response(status, nome_do_conteudo, conteudo, mensagem=False):
     body = {}
     body[nome_do_conteudo] = conteudo
@@ -120,14 +87,73 @@ def gera_response(status, nome_do_conteudo, conteudo, mensagem=False):
 
     return Response(json.dumps(body), headers=headers, status=status, mimetype="application/json")
 
-@app.route("/teste", methods=["GET"])
+
+# Endpoints:
+
+@app.route("/MPO_0A", methods=["GET"])
+def mpo_0A():
+    mpo_objs_OK = MPO.query.filter_by(result='OK')
+    mpo_OK = [mpo.to_json() for mpo in mpo_objs_OK]
+    mpo_objs_NOK = MPO.query.filter_by(result='NOK')
+    mpo_NOK = [mpo.to_json() for mpo in mpo_objs_NOK]
+    
+    return gera_response(200, "MPO_0A", [len(mpo_OK), len(mpo_NOK)])
+
+@app.route("/MPO_0B", methods=["GET"])
+def mpo_0B():
+    mpo_objs_OK = MPO.query.filter_by(result='OK')
+    mpo_OK = [mpo.to_json() for mpo in mpo_objs_OK]
+
+    
+    resposta = [{
+        'name' : 'Aprov',
+        'data' : [{
+        'x' : '08:00',
+        'y' : 1
+        },{
+        'x' : '09:00',
+        'y' : 2
+        },{
+        'x' : '10:00',
+        'y' : 3}]
+        },{
+        'name' : 'Reprov',
+        'data' : [{
+        'x' : '08:00',
+        'y' : 3
+        },{
+        'x' : '09:00',
+        'y' : 2
+        },{
+        'x' : '08:00',
+        'y' : 1}]
+        }]
+    
+    return gera_response(200, "MPO_0B", resposta)
+
+
+
+
+
+@app.route("/teste1", methods=["GET"])
 def teste():
     a = random.randint(0, 100)
-    #b = random.randint(0, 100)
+    b = random.randint(0, 100)
     #c = random.randint(0, 100)
     #d = random.randint(0, 100)
-    
-    return gera_response(200, "teste", a)
+    f = [a, b]
+    return gera_response(200, "teste", f)
+
+
+
+
+
 
 if __name__ == "__main__":
+    # Criando as tabelas:
+    with app.app_context():
+        db.create_all()
+    
+    # Iniciando api
     app.run(host='0.0.0.0')
+    

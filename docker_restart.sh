@@ -1,0 +1,1 @@
+./docker_clear.sh && ./docker_start.sh

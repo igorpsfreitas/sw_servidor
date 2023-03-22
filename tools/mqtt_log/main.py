@@ -3,7 +3,7 @@ from threading import Thread
 import json, datetime
 
 # Configuracoes de conexao ao broker:
-broker = '192.168.0.66'
+broker = '127.0.0.1'
 port = 1883
 
 #Callback - mensagem recebida do broker

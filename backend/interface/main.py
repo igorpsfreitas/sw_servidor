@@ -1,19 +1,20 @@
 from paho.mqtt import client as mqtt_client
-from threading import Thread
 from sqlalchemy.ext.declarative import declarative_base
 import json 
 import sqlalchemy as db
-from log import registrar
 
 # Configuracoes de conexao ao broker:
+#broker = '127.0.0.1'
 broker = 'sensor_broker'
 port = 1883
-id_sld = 'interface_sensor-SLD'
-id_mpo = 'interface_sensor-MPO'
-id_hbw = 'interface_sensor-HBW'
-id_vgr = 'interface_sensor-VGR'
+topics = [
+    ('/nfc/SLD', 0),
+    ('/nfc/MPO', 0),
+    ('/nfc/HBW', 0)
+    ]
 
 # Configuracoes de conexao ao Banco de dados:
+#db_adress = '127.0.0.1'
 db_adress = 'sensor_db'
 db_port = '3306'
 db_user = 'root'
@@ -28,224 +29,187 @@ Session = db.orm.sessionmaker()
 Session.configure(bind=engine)
 Session = Session()
 
+# adicionais:
+lista_in_sld = []
 
 # Mapping das Tabelas:
-class SLD(base):
-    __tablename__ = 'sld'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
-    uid = db.Column(db.BigInteger)
-    baia = db.Column(db.Integer)
-    time = db.Column(db.String(length=10))
-    result = db.Column(db.Boolean)
-    def to_json(self):
-        return {
-            "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "baia": self.baia,
-            "time": self.time,
-            "result": self.result
-            }
-
 class MPO(base):
     __tablename__ = 'mpo'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
+    status = db.Column(db.String(length=10))
     uid = db.Column(db.BigInteger)
+    result = db.Column(db.String(length=5))
     time = db.Column(db.String(length=10))
-    result = db.Column(db.Boolean, default=True)
-    def to_json(self):
-        return {
-            "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "time": self.time,
-            "result": self.result
-            }
-
+    
+class SLD(base):
+    __tablename__ = 'sld'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    status = db.Column(db.String(length=10))
+    uid = db.Column(db.BigInteger)
+    baia = db.Column(db.Integer)
+    time = db.Column(db.String(length=10))
+    result = db.Column(db.String(length=5))
+    
 class HBW(base):
     __tablename__ = 'hbw'
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.Boolean, default=True)
+    status = db.Column(db.String(length=10))
     uid = db.Column(db.BigInteger)
-    baia = db.Column(db.Integer)
     local = db.Column(db.String(length=20))
+    baia = db.Column(db.Integer)
     destino = db.Column(db.String(length=20))
+    result = db.Column(db.String(length=5))
     time = db.Column(db.String(length=10))
-    result = db.Column(db.String(length=20))
-    def to_json(self):
-        return {
-            "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "baia": self.baia,
-            "time": self.time,
-            "local": self.local,
-            "destino": self.destino,
-            "result": self.result
-            }
-
-class VGR(base):
-    __tablename__ = 'vgr'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.Boolean, default=True)
-    uid = db.Column(db.BigInteger)
-    time = db.Column(db.String(length=10))
-    def to_json(self):
-        return {
-            "id": self.id,
-            "status": self.status,
-            "uid": self.uid,
-            "time": self.time
-            }
-
+    
 # --------------------------------------------------------------------------------------------------------------------------------------- #
 
 # Funcao de conexao ao broker:
-def connect_mqtt(client_id):
+def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
-            print(f'Conexao "{client_id}": OK!')
+            print(f'Conexao: OK!')
         else:
-            print(f'Conexao "{client_id}": FAIL!')
+            print(f'Conexao: FAIL!')
 
-    client = mqtt_client.Client(client_id)
+    client = mqtt_client.Client('interface_sensor')
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
 
 # Funcao de subscriçao SLD:
-def subscribe_sld(client: mqtt_client, topic: str()):
+def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
         try:
             data = json.loads(msg.payload.decode())
-            registrar(data)
-            #print(data)
+            # Decoder UID list to int:
+            str_aux = ''
+            for i in data['UID']:
+                str_aux += str(i)
+            data['UID'] = int(str_aux)
             
-            # Tratamento dos dados MQTT:
-            if (data['Status'] == "OUT"):
-                data['Status'] = False
-            else:
-                data['Status'] = True
-
-            try:            
-                str_aux = ''
-                for i in data['UID']:
-                    str_aux += str(i)
-                data['UID'] = int(str_aux)
-            except:
-                data['UID'] = 404
-            if 'RESULT' in data:
-                if (data['RESULT'] == "NOK"):
-                    data['RESULT'] = False
-                elif (data['RESULT'] == "OK"):
-                    data['RESULT'] = True
+            # Recebe os dados para o banco:
+            match msg.topic:
                 
-            #print(data)
+                case '/nfc/MPO':
+                    try:
+                        engine.execute('ALTER TABLE `mpo` AUTO_INCREMENT = 0')
+                        if 'RESULT' in data:
+                            newProduto = MPO(
+                            status=data['Status'],
+                            uid=data['UID'],
+                            result=data['RESULT'],
+                            time=data['Time_stamp']
+                            )
+                        else:
+                            newProduto = MPO(
+                            status=data['Status'],
+                            uid=data['UID'],
+                            time=data['Time_stamp']
+                            )
+                        Session.add(newProduto)
+                        print(data)
+                        Session.commit()
+                        print('Dado registrado no banco!')
+                    
+                    except:
+                        print(f'Erro na adição ao Banco de Dados')
+                
+                case '/nfc/SLD':
+                    # Corrigi o erro de nao receber baia na hora da saida:
+                    if (data['UID'] in lista_in_sld) and (data['Status'] == 'OUT'):
+                        data['baia'] = lista_in_sld[lista_in_sld.index(data['UID']) + 1]
+                        del lista_in_sld[lista_in_sld.index(data['UID']) + 1]
+                        lista_in_sld.remove(data['UID'])
+                    else:
+                        lista_in_sld.append(data['UID'])
+                        lista_in_sld.append(data['baia'])
+                    try:
+                        engine.execute('ALTER TABLE `sld` AUTO_INCREMENT = 0')
+                        if 'RESULT' in data:
+                            newProduto = SLD(
+                            status=data['Status'],
+                            uid=data['UID'],
+                            baia=data['baia'],
+                            result=data['RESULT'],
+                            time=data['Time_stamp']
+                            )
+                        else:
+                            newProduto = SLD(
+                            status=data['Status'],
+                            uid=data['UID'],
+                            baia=data['baia'],
+                            time=data['Time_stamp']
+                            )
+                        Session.add(newProduto)
+                        print(data)
+                        Session.commit()
+                        print('Dado registrado no banco!')
+                    
+                    except:
+                        print(f'Erro na adição ao Banco de Dados')
+                
+                case '/nfc/HBW':
+                    try:
+                        engine.execute('ALTER TABLE `hbw` AUTO_INCREMENT = 0')
+                        if data['Local'] == 'Debug_ICT':
+                            if 'Result' in data:
+                                newProduto = HBW(
+                                status=data['Status'],
+                                uid=data['UID'],
+                                local=data['Local'],
+                                baia=data['Baia'],
+                                result=data['Result'],
+                                destino=data['Destino'],
+                                time=data['Time_stamp']
+                                )
+                            else:
+                                newProduto = HBW(
+                                status=data['Status'],
+                                uid=data['UID'],
+                                local=data['Local'],
+                                baia=data['Baia'],
+                                time=data['Time_stamp']
+                                )
 
-            # Insercao ao Banco de dados:
-            try:
-                engine.execute('ALTER TABLE `sld` AUTO_INCREMENT = 0')
-                if 'RESULT' in data:
-                    newProduto = SLD(
-                    status=data['Status'],
-                    uid=data['UID'],
-                    time=data['Time_stamp'],
-                    result=data['RESULT']
-                    )
-                else:
-                    newProduto = SLD(
-                    status=data['Status'],
-                    uid=data['UID'],
-                    time=data['Time_stamp']
-                    )
-                Session.add(newProduto)
-                print('Dado registrado no banco!')
-                print(data)
-                Session.commit()
-            
-            except:
-                print(f'Erro na adição ao Banco de Dados')
-
-
+                        else:
+                            if 'Result' in data:
+                                # Corrigi o erro de padronis:
+                                if data['Next'] == 'Final':
+                                    data['Next'] = 'Saida'
+                            
+                                newProduto = HBW(
+                                status=data['Status'],
+                                uid=data['UID'],
+                                local=data['Local'],
+                                baia=data['Baia'],
+                                result=data['Result'],
+                                destino=data['Next'],
+                                time=data['Time_stamp']
+                                )
+                            else:
+                                newProduto = HBW(
+                                status=data['Status'],
+                                uid=data['UID'],
+                                local=data['Local'],
+                                baia=data['Baia'],
+                                time=data['Time_stamp']
+                                )
+                        
+                        
+                        Session.add(newProduto)
+                        print(data)
+                        Session.commit()
+                        print('Dado registrado no banco!')
+                    
+                    except:
+                        print(f'Erro na adição ao Banco de Dados')
         except:
-            print(f'Erro no JSON recebido no topico: "SLD"\n Mensagem: {msg.payload.decode()}')
-
-    client.subscribe(topic)
+            print(f'Erro no JSON recebido no topico: {msg.topic}\n Mensagem: {msg.payload.decode()}')
+    client.subscribe(topics)
     client.on_message = on_message
-
-
-# Funcao de subscricao MPO:
-def subscribe_mpo(client: mqtt_client, topic: str()):
-    def on_message(client, userdata, msg):
-        try:
-            data = json.loads(msg.payload.decode())
-            print(data)
-            # Incersao no banco:
-
-            # Falta implementar
-
-        except:
-            print(f'Erro no JSON recebido no topico: "MPO"\n Mensagem: {msg.payload.decode()}')
-
-    client.subscribe(topic)
-    client.on_message = on_message
-
-# Funcao de subscricao HBW:
-def subscribe_hbw(client: mqtt_client, topic: str()):
-    def on_message(client, userdata, msg):
-        try:
-            data = json.loads(msg.payload.decode())
-            print(data)
-            # Incersao no banco:
-
-            # Falta implementar
-
-        except:
-            print(f'Erro no JSON recebido no topico: "HBW"\n Mensagem: {msg.payload.decode()}')
-
-    client.subscribe(topic)
-    client.on_message = on_message
-
-# Funcao de subscricao VGR:
-def subscribe_vgr(client: mqtt_client, topic: str()):
-    def on_message(client, userdata, msg):
-        try:
-            data = json.loads(msg.payload.decode())
-            print(data)
-            # Incersao no banco:
-
-            # Falta implementar
-
-        except:
-            print(f'Erro no JSON recebido no topico: "vgr"\n Mensagem: {msg.payload.decode()}')
-
-    client.subscribe(topic)
-    client.on_message = on_message
-
-
 
 
 # Ativacao:
-
-# SLD:
-cliente_SLD = connect_mqtt(id_sld)
-subscribe_sld(cliente_SLD, '/nfc/SLD')
-th_sld = Thread(target=cliente_SLD.loop_forever)
-th_sld.start()
-# MPO:
-cliente_MPO = connect_mqtt(id_mpo)
-subscribe_mpo(cliente_MPO, '/nfc/MPO')
-th_MPO = Thread(target=cliente_MPO.loop_forever)
-th_MPO.start()
-# HBW:
-cliente_HBW = connect_mqtt(id_hbw)
-subscribe_hbw(cliente_HBW, '/nfc/HBW')
-th_HBW = Thread(target=cliente_HBW.loop_forever)
-th_HBW.start()
-# VGR:
-cliente_VGR = connect_mqtt(id_vgr)
-subscribe_vgr(cliente_VGR, '/nfc/VGR')
-th_vgr = Thread(target=cliente_VGR.loop_forever)
-th_vgr.start()
+cliente = connect_mqtt()
+subscribe(cliente)
+cliente.loop_forever()
