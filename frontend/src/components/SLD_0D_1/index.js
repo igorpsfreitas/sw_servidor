@@ -48,6 +48,15 @@ const state = {
     xaxis: {
       categories: ['09:00', '10:00', '11:00', '12:00'],
     },
+    yaxis: {
+      title: {
+        text: 'Segundos',
+        style: {
+          fontSize: '1em',
+          fontWeight: 900
+        }
+      }
+    },
     colors:['#028f76', '#b8b040']
   },
 
@@ -57,7 +66,7 @@ const state = {
 
 
 function SLD_0D_1(){
-  /*
+  
     const [date, setDate] = useState(0);
     if (date == 0){
       refresh()
@@ -66,8 +75,8 @@ function SLD_0D_1(){
     
     function refresh(){
       api
-      .get("/teste")
-      .then((response) => setDate(response.data.teste))
+      .get("/SLD_0D_1")
+      .then((response) => setDate(response.data.SLD_0D_1))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
     })}
@@ -78,14 +87,14 @@ function SLD_0D_1(){
         clearInterval(timerId);
       };
     }, []); 
-    */
+    
     return(
       <div>
         <Box border="2px" boxShadow='lg' borderRadius='lg' borderColor="#9cadf7" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>SLD</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="line" height='75%' width='100%'/>
+      <Chart options={state.options} series={date} type="line" height='75%' width='100%'/>
       </Box>
       </div>
       

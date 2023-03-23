@@ -93,7 +93,7 @@ sld_ = [
     '{"Status": "IN", "UID": [4, 31, 168, 66, 239, 108, 129], "baia": 6, "Time_stamp": "13:29:34"}',
     '{"Status": "OUT", "UID": [4, 192, 168, 66, 239, 108, 128], "Time_stamp": "13:30:01", "RESULT": "OK"}',
     '{"Status": "IN", "UID": [4, 145, 168, 66, 239, 108, 128], "baia": 0, "Time_stamp": "13:30:34"}',
-    '{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 129], "Time_stamp": "13:31:19", "RESULT": "OK"}',
+    '{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 129], "Time_stamp": "13:31:19", "RESULT": "NOK"}',
     '{"Status": "OUT", "UID": [4, 31, 168, 66, 239, 108, 129], "Time_stamp": "13:31:38", "RESULT": "OK"}',
     '{"Status": "IN", "UID": [4, 201, 220, 42, 45, 16, 144], "baia": 3, "Time_stamp": "13:31:51"}',
     '{"Status": "OUT", "UID": [4, 145, 168, 66, 239, 108, 128], "Time_stamp": "13:32:48", "RESULT": "NOK"}',

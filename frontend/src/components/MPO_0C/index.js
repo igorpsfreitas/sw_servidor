@@ -66,7 +66,7 @@ const state = {
 
 
 function MPO_0C(){
-  /*
+  
     const [date, setDate] = useState(0);
     if (date == 0){
       refresh()
@@ -75,8 +75,8 @@ function MPO_0C(){
     
     function refresh(){
       api
-      .get("/teste")
-      .then((response) => setDate(response.data.teste))
+      .get("/MPO_0C")
+      .then((response) => setDate(response.data.MPO_0C))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
     })}
@@ -87,14 +87,14 @@ function MPO_0C(){
         clearInterval(timerId);
       };
     }, []); 
-    */
+    
     return(
       <div>
         <Box border="2px" boxShadow='lg' borderRadius='lg' borderColor="#6F6" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>MPO</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="line" height='75%' width='100%'/>
+      <Chart options={state.options} series={date} type="line" height='75%' width='100%'/>
       </Box>
       </div>
       

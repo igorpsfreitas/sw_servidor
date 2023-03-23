@@ -39,7 +39,7 @@ const state = {
 
 
 function SLD_DEBUG(){
-  /*
+  
     const [date, setDate] = useState(0);
     if (date == 0){
       refresh()
@@ -48,8 +48,8 @@ function SLD_DEBUG(){
     
     function refresh(){
       api
-      .get("/teste")
-      .then((response) => setDate(response.data.teste))
+      .get("/SLD_DEBUG")
+      .then((response) => setDate(response.data.SLD_DEBUG))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
     })}
@@ -60,14 +60,14 @@ function SLD_DEBUG(){
         clearInterval(timerId);
       };
     }, []); 
-    */
+  
     return(
       <div>
         <Box border="2px" boxShadow='lg' borderRadius='lg' borderColor="#c9f241" padding={'0 1em 0 1em'} height={300} width={450} m='1em 0 0 0'>
         <Center>
           <Text fontSize='1.5em' padding={'0.5em 0 0 0'} as='b'>DEBUG_SLD</Text>
         </Center>
-      <Chart options={state.options} series={state.series} type="donut" height='75%' width='100%'/>
+      <Chart options={state.options} series={date} type="donut" height='75%' width='100%'/>
       </Box>
       </div>
       
