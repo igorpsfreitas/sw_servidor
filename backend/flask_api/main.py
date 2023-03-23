@@ -101,32 +101,43 @@ def mpo_0A():
 
 @app.route("/MPO_0B", methods=["GET"])
 def mpo_0B():
+    def calcula_lista(lista):
+        resultado = []
+        for item in lista:
+            hora = str(item['Time_stamp'][0:2]).zfill(2) + ':00'
+            if len(resultado) == 0:
+                resultado.append({
+                    'x' : hora,
+                    'y' : 1})
+            else:
+                existe_hora=0
+                for item in resultado:
+                    if item['x'] == hora:
+                        item['y'] += 1
+                        existe_hora += 1
+                if existe_hora == 0:
+                    resultado.append({
+                    'x' : hora,
+                    'y' : 1})
+        return resultado
+            
+
     mpo_objs_OK = MPO.query.filter_by(result='OK')
     mpo_OK = [mpo.to_json() for mpo in mpo_objs_OK]
+    res_ok = calcula_lista(mpo_OK)
 
+    mpo_objs_NOK = MPO.query.filter_by(result='NOK')
+    mpo_NOK = [mpo.to_json() for mpo in mpo_objs_NOK]
+    res_nok = calcula_lista(mpo_NOK)
     
+    
+       
     resposta = [{
-        'name' : 'Aprov',
-        'data' : [{
-        'x' : '08:00',
-        'y' : 1
+        'name' : 'Aprovados',
+        'data' : res_ok
         },{
-        'x' : '09:00',
-        'y' : 2
-        },{
-        'x' : '10:00',
-        'y' : 3}]
-        },{
-        'name' : 'Reprov',
-        'data' : [{
-        'x' : '08:00',
-        'y' : 3
-        },{
-        'x' : '09:00',
-        'y' : 2
-        },{
-        'x' : '08:00',
-        'y' : 1}]
+        'name' : 'Reprovados',
+        'data' : res_nok
         }]
     
     return gera_response(200, "MPO_0B", resposta)
